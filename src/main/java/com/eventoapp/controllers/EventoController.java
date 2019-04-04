@@ -63,7 +63,11 @@ public class EventoController {
   @RequestMapping("/deletarEvento")
   public String deletarEvento(long codigo) {
     Evento evento = er.findByCodigo(codigo);
-    deletarConvidado(evento);
+    if(cr.findByEvento(evento).iterator().hasNext()) {
+      deletarConvidado(evento);
+      er.delete(evento);
+      return "redirect:/eventos";
+    }
     er.delete(evento);
     return "redirect:/eventos";
   }

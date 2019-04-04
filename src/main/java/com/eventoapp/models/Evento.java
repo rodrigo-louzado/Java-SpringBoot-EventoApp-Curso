@@ -100,4 +100,26 @@ public class Evento implements Serializable {
   public void setHorario(String horario) {
     this.horario = horario;
   }
+
+  /**
+   * @param codigo the codigo to set
+   */
+  public void setCodigo(long codigo) {
+    this.codigo = codigo;
+  }
+
+  /**
+   * @return the convidados
+   */
+  public List<Convidado> getConvidados() {
+    return convidados;
+  }
+
+  /**
+   * @param convidados the convidados to set
+   */
+  public void setConvidados(List<Convidado> convidados) {
+    this.convidados = convidados;
+  }
+  
 }
