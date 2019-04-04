@@ -1,7 +1,5 @@
 package com.eventoapp.controllers;
 
-import java.awt.List;
-
 import javax.validation.Valid;
 
 import com.eventoapp.models.Convidado;
@@ -95,7 +93,7 @@ public class EventoController {
   }
 
   public void deletarConvidado(Evento evento) {
-    cr.findByEvento(evento);
-    cr.deleteByEvento(evento);
+    Iterable<Convidado> convidado = cr.findByEvento(evento);
+    cr.delete(convidado.iterator().next());
   }
 }
