@@ -1,5 +1,7 @@
 package com.eventoapp.controllers;
 
+import java.awt.List;
+
 import javax.validation.Valid;
 
 import com.eventoapp.models.Convidado;
@@ -63,6 +65,7 @@ public class EventoController {
   @RequestMapping("/deletarEvento")
   public String deletarEvento(long codigo) {
     Evento evento = er.findByCodigo(codigo);
+    deletarConvidado(evento);
     er.delete(evento);
     return "redirect:/eventos";
   }
@@ -89,5 +92,10 @@ public class EventoController {
     long codigoLong = evento.getCodigo();
     String codigo = "" + codigoLong;
     return "redirect:/" + codigo;
+  }
+
+  public void deletarConvidado(Evento evento) {
+    cr.findByEvento(evento);
+    cr.deleteByEvento(evento);
   }
 }
