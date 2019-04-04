@@ -18,17 +18,13 @@ public class DataConfigurationPostgreSQL{
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgres://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(dbUrl);
         basicDataSource.setUsername(username);
         basicDataSource.setPassword(password);
-        basicDataSource.setTestOnBorrow(true);
-        basicDataSource.setTestWhileIdle(true);
-        basicDataSource.setTestOnReturn(true);
-        basicDataSource.setValidationQuery("SELECT 1");
-        basicDataSource.setDriverClassName("org.hibernate.dialect.PostgreSQLDialect");
+
         return basicDataSource;
     }
 }
