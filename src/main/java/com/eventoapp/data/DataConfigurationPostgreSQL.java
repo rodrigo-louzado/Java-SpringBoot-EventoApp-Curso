@@ -2,6 +2,7 @@ package com.eventoapp.data;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Properties;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
@@ -26,5 +27,14 @@ public class DataConfigurationPostgreSQL{
         basicDataSource.setPassword(password);
 
         return basicDataSource;
+    }
+
+    @Bean
+    public Properties additionalProperties() {
+        Properties props = new Properties();
+        props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        props.setProperty("hibernate.show_sql", "true");
+        props.setProperty("hibernate.hbm2ddl.auto", "create");
+        return props;
     }
 }
